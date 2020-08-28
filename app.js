@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var CASAuthentication = require('node-cas-authentication');
-var dashboard = require('startbootstrap-sb-admin');
+//var dashboard = require('startbootstrap-sb-admin');
 var cas = new CASAuthentication({
     cas_url     : 'https://hadtech-cas.tk/cas',
     service_url : 'https://node-cas.herokuapp.com'
@@ -44,7 +44,7 @@ var cas = new CASAuthentication({
     service_url : 'https://node-cas.herokuapp.com'
 }); 
 app.get('/login', cas.bounce, function ( req, res ) {
-    res.render(dashboard);
+    res.render('dashboard');
 });
  
 // Unauthenticated clients will receive a 401 Unauthorized response instead of
