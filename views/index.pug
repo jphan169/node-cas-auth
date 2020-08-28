@@ -1,5 +1,13 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block layout-content
+  div.View
+    h1.Banner HADTech
+    div.Message
+      div.Title
+        h3 Welcome to HADTech
+        h1 E-learning Platform
+      span.Details Access the Dashboard
+    div.NavButtons
+      a(href="/authenticate")
+          div.NavButton Just dive in!

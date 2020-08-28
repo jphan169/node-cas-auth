@@ -37,7 +37,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-var app = require('express')();
+//var app = require('express')();
 var session = require('express-session');
 var CASAuthentication = require('node-cas-authentication');
  
@@ -56,7 +56,7 @@ var cas = new CASAuthentication({
  
 // Unauthenticated clients will be redirected to the CAS login and then back to
 // this route once authenticated.
-app.get( '/', cas.bounce, function ( req, res ) {
+app.get( '/login', cas.bounce, function ( req, res ) {
     res.send( '<html><body>Hello!</body></html>' );
 });
  

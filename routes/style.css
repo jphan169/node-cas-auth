@@ -19,7 +19,10 @@
 * {
   box-sizing: border-box;
 }
-
+.WelcomeView {
+    background: url("food.jpg") left bottom;
+    background-size: cover;
+  }
 html,
 body,
 #root {
@@ -82,10 +85,7 @@ a {
 
   font-family: var(--core-font);
 }
-.WelcomeView {
-  background: url("food.jpg") left bottom;
-  background-size: cover;
-}
+
 .Banner {
   display: flex;
   flex-direction: column;
