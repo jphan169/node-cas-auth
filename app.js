@@ -51,12 +51,12 @@ app.use( session({
 // Create a new instance of CASAuthentication.
 var cas = new CASAuthentication({
     cas_url     : 'https://hadtech-cas.tk/cas',
-    service_url : 'https://node-cas.herokuapp.com/'
+    service_url : 'https://node-cas.herokuapp.com'
 });
  
 // Unauthenticated clients will be redirected to the CAS login and then back to
 // this route once authenticated.
-app.get( '/app', cas.bounce, function ( req, res ) {
+app.get( '/', cas.bounce, function ( req, res ) {
     res.send( '<html><body>Hello!</body></html>' );
 });
  
