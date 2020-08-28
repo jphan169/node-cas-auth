@@ -83,7 +83,7 @@ a {
   font-family: var(--core-font);
 }
 .WelcomeView {
-  background: url("../images/food.jpg") left bottom;
+  background: url("food.jpg") left bottom;
   background-size: cover;
 }
 .Banner {

@@ -11,7 +11,7 @@ var cas = new CASAuthentication({
 }); 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var loginRouter = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -26,8 +26,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//app.use('/login', loginRouter);
+// catch 404 and forward to error handler
+
+//var app1 = require('express')();
+var session = require('express-session');
+var CASAuthentication = require('node-cas-authentication');
+//const app = require('../app');
+app.use( session({
+    secret            : 'super secret key',
+    resave            : false,
+    saveUninitialized : true
+}));
+var cas = new CASAuthentication({
+    cas_url     : 'https://hadtech-cas.tk/cas',
+    service_url : 'https://node-cas.herokuapp.com'
+}); 
 app.get('/login', cas.bounce, function ( req, res ) {
-    res.send( '<html><body>Hello!</body></html>' );
+    res.render('dashboard');
 });
  
 // Unauthenticated clients will receive a 401 Unauthorized response instead of
@@ -49,7 +65,12 @@ app.get('/authenticate', cas.bounce_redirect );
 // This route will de-authenticate the client with the Express server and then
 // redirect the client to the CAS logout page.
 app.get('/logout', cas.logout );
-// catch 404 and forward to error handler
+//var app = require('express')();
+
+// Set up an Express session, which is required for CASAuthentication.
+
+ 
+// Create a new instance of CASAuthentication.
 app.use(function(req, res, next) {
   next(createError(404));
 });
@@ -64,17 +85,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-//var app = require('express')();
-
-// Set up an Express session, which is required for CASAuthentication.
-app.use( session({
-    secret            : 'super secret key',
-    resave            : false,
-    saveUninitialized : true
-}));
- 
-// Create a new instance of CASAuthentication.
-
  
 // Unauthenticated clients will be redirected to the CAS login and then back to
 // this route once authenticated.
