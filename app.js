@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+var open = require('open');
 var CASAuthentication = require('node-cas-authentication');
 //var dashboard = require('startbootstrap-sb-admin');
 var cas = new CASAuthentication({
@@ -44,7 +45,9 @@ var cas = new CASAuthentication({
     service_url : 'https://node-cas.herokuapp.com'
 }); 
 app.get('/login', cas.bounce, function ( req, res ) {
-    res.render('dashboard');
+    res.open( 'http://urltodirect.to', function (err) {
+        if ( err ) throw err;    
+      });
 });
  
 // Unauthenticated clients will receive a 401 Unauthorized response instead of
