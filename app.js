@@ -45,7 +45,7 @@ var cas = new CASAuthentication({
     service_url : 'https://node-cas.herokuapp.com'
 }); 
 app.get('/login', cas.bounce, function ( req, res ) {
-    res.open( 'http://urltodirect.to', function (err) {
+    res.render( 'dashboard', function (err) {
         if ( err ) throw err;    
       });
 });
