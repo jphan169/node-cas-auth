@@ -45,9 +45,7 @@ var cas = new CASAuthentication({
     service_url : 'https://node-cas.herokuapp.com'
 }); 
 app.get('/login', cas.bounce, function ( req, res ) {
-    res.render( 'dashboard', function (err) {
-        if ( err ) throw err;    
-      });
+    res.render( 'dashboard', { title: 'HOME' });
 });
  
 // Unauthenticated clients will receive a 401 Unauthorized response instead of
